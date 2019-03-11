@@ -85,7 +85,7 @@ class NewVisitorTest(LiveServerTestCase):
 
         # She notices that her list has a unique url
         edith_list_url = self.browser.current_url
-        self.assertRegex(edith_list_url, '/list/.+')
+        self.assertRegex(edith_list_url, '/lists/.+')
 
         # Now a new user, Francis, comes along to the site.
         #
@@ -97,12 +97,12 @@ class NewVisitorTest(LiveServerTestCase):
         # Francis visits the home page. There is no sign of Edith's list
         self.browser.get(self.live_server_url)
         page_text = self.browser.find_element_by_tag_name('body').text
-        self.assertIn('Buy peacock feathers', page_text)
+        self.assertNotIn('Buy peacock feathers', page_text)
         self.assertNotIn('make a fly', page_text)
 
         # Francis starts a new list by entering a new item. He
         # is less interesting than Edith
-        inputbox.self.browser.find_element_by_id('id_new_item')
+        inputbox = self.browser.find_element_by_id('id_new_item')
         inputbox.send_keys('Buy milk')
         inputbox.send_keys(Keys.ENTER)
         self.wait_for_row_in_list_table('1: Buy milk')
