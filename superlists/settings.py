@@ -25,7 +25,7 @@ SECRET_KEY = '2_lpg&xi^#=f)*q9@+nivd1h!u(np5%&-$i(8p5fspgnzex*!k'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
