@@ -17,7 +17,7 @@ eg, on Ubuntu:
 ## Nginx Virtual Host config
 
 * see nginx.template.conf
-* replace DOMAINwith, e.g., staging.my-domain.com
+* replace DOMAIN with, e.g., staging.my-domain.com
 
 ## Systemd service
 
