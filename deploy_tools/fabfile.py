@@ -8,8 +8,8 @@ REPO_URL = 'https://github.com/yamen225/Superlists'
 
 @hosts(['superlists-staging.ottg.eu'])
 def get_vagrant_staging_connection():
-    local('cd ~/vagrant_ObeyTheTestingGoat_staging; vagrant up')
-    result = local('cd ~/vagrant_ObeyTheTestingGoat; vagrant ssh-config',
+    local('cd ~/vag_OTG_stg; vagrant up')
+    result = local('cd ~/vag_OTG_stg; vagrant ssh-config',
                    capture=True)
     hostname = re.findall(r'HostName\s+([^\n]+)', result)[0]
     port = re.findall(r'Port\s+([^\n]+)', result)[0]
@@ -35,7 +35,7 @@ def get_vagrant_deployment_connection():
 
 
 def deploy():
-    site_folder = f'/home/{env.user}/sites/{env.host}'
+    site_folder = f'/home/{env.user}/sites/{env.host}/Superlists'
     run(f'mkdir -p {site_folder}')
     with cd(site_folder):
         _get_latest_source()

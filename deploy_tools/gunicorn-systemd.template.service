@@ -1,13 +1,13 @@
 [Unit]
 Description=Gunicorn server for DOMAIN
 
-[service]
+[Service]
 Restart=on-failure
 User=vagrant
 WorkingDirectory=/home/vagrant/sites/DOMAIN/Superlists
 EnvironmentFile=/home/vagrant/sites/DOMAIN/Superlists/.env
 
-ExecStart=/home/vagrant/sites/DOMAIN/virtualenv/bin/gunicorn --bind unix:/tmp/DOMAIN.socket superlists.wsgi:application
+ExecStart=/home/vagrant/sites/DOMAIN/Superlists/virtualenv/bin/gunicorn --bind unix:/tmp/DOMAIN.socket superlists.wsgi:application
 
 [Install]
 WantedBy=multi-user.target
