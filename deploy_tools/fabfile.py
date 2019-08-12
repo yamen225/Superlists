@@ -18,6 +18,7 @@ def get_vagrant_staging_connection():
     env.key_filename = re.findall(
         r'IdentityFile\s+([^\n]+)', result)[0].lstrip("\"").rstrip("\"")
     deploy()
+    _restart_stg_services()
 
 
 @hosts(['superlists.ottg.eu'])
@@ -32,6 +33,7 @@ def get_vagrant_deployment_connection():
     env.key_filename = re.findall(
         r'IdentityFile\s+([^\n]+)', result)[0].lstrip("\"").rstrip("\"")
     deploy()
+    _restart_prod_services()
 
 
 def deploy():
@@ -80,3 +82,11 @@ def _update_static_files():
 
 def _update_database():
     run('./virtualenv/bin/python manage.py migrate --noinput')
+
+
+def _restart_stg_services():
+    run('sudo systemctl restart gunicorn-superlists-staginng.ottg.eu.service')
+
+
+def _restart_prod_services():
+    run('sudo systemctl restart gunicorn-superlists.ottg.eu.service')
